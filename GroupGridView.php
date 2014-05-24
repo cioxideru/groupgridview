@@ -251,7 +251,9 @@ class GroupGridView extends CGridView {
                     $result[$column] = $data[$column];
                 } elseif($data instanceOf CModel && $data->hasAttribute($column)) {
                     $result[$column] = $data->getAttribute($column);
-                } else {
+                }elseif(isset($data->{$column})){
+					$result[$column] = $data->{$column};
+				} else {
                     throw new CException('Column or attribute "'.$column.'" not found!');
                 }
             }
